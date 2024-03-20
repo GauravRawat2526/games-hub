@@ -12,5 +12,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <ColorModeScript initialColorMode={theme.config.initialColorMode}/>
     <App />
     </ChakraProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 )
