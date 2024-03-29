@@ -3,9 +3,10 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeletion from "./GameCardSkeletion";
 import GameCardContainer from "./GameCardContainer";
+import { Genre } from "../hooks/useGenres";
 
-function GameGrid() {
-  const { data, error, isLoading } = useGames();
+function GameGrid( {selectedGenre} : {selectedGenre : Genre | null}) {
+  const { data, error, isLoading } = useGames(selectedGenre);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 91, 32, 922];
   return (
     <>
@@ -14,7 +15,7 @@ function GameGrid() {
       <SimpleGrid
         padding="10px"
         columns={{ sm: 1, md: 2, lg: 3, xl: 4}}
-        spacing={10}
+        spacing={3}
       >
         {isLoading &&
           skeleton.map((s) => (
