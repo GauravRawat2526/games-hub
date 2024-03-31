@@ -3,25 +3,25 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeletion from "./GameCardSkeletion";
 import GameCardContainer from "./GameCardContainer";
-import { Genre } from "../hooks/useGenres";
+import { GameQuery } from "../App";
 
-function GameGrid( {selectedGenre} : {selectedGenre : Genre | null}) {
-  const { data, error, isLoading } = useGames(selectedGenre);
+function GameGrid({ gameQuery }: { gameQuery: GameQuery }) {
+  const { data, error, isLoading } = useGames(gameQuery);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 91, 32, 922];
+
+  if (error) return <Text>{error}</Text>;
   return (
     <>
-      {error && <Text>{error}</Text>}
-
       <SimpleGrid
         padding="10px"
-        columns={{ sm: 1, md: 2, lg: 3, xl: 4}}
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         spacing={3}
       >
         {isLoading &&
           skeleton.map((s) => (
             <GameCardContainer key={s}>
               {" "}
-              <GameCardSkeletion  />{" "}
+              <GameCardSkeletion />{" "}
             </GameCardContainer>
           ))}
         {data.map((game) => (
